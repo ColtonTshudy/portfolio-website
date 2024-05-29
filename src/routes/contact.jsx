@@ -1,11 +1,20 @@
+import { Box, Divider, Paper, Typography, styled } from '@mui/material';
 import React from 'react';
 
 const Contact = () => {
   return (
-    <div>
-      <h1>Contact</h1>
-      <p>This is the Contact section.</p>
-    </div>
+    <Paper elevation={5} sx={{ p: 3, textAlign: 'left', m: 5, }}>
+      <Typography variant="h3" gutterBottom>
+        Contact
+      </Typography>
+      <Divider/>
+      <Typography variant="h5" sx={{fontStyle:'italic', my:2}}>
+        coltont@vt.edu
+      </Typography>
+      <Typography variant="h5" sx={{fontStyle:'italic', my:2}}>
+        (804)-405-9861
+      </Typography>
+    </Paper>
   );
 };
 

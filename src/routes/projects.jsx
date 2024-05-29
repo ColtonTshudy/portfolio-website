@@ -1,11 +1,13 @@
 import React from 'react';
+import { Box, Paper, Typography, styled } from '@mui/material';
 
 const Projects = () => {
   return (
-    <div>
-      <h1>Projects</h1>
-      <p>This is the Projects section.</p>
-    </div>
+    <Box>
+      <Typography variant='h3' sx={{ fontStyle: 'italic' }}>
+        Projects
+      </Typography>
+    </Box>
   );
 };
 

@@ -1,3 +1,8 @@
+/* TODO
+ * - add linkedin, email, phone number under intro paragraph w/ icons
+ * - add other projects
+ */
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -31,6 +36,9 @@ const router = createBrowserRouter([
 /* MUI Theme */
 const theme = createTheme({
   palette: {
+    background: {
+      default: "lightgrey"
+    },
     primary: {
       main: '#a83232', // maroon
     },

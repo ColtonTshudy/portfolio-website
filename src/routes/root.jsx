@@ -6,6 +6,8 @@ import Projects from './projects.jsx';
 import Contact from './contact.jsx';
 import { Widgets } from '@mui/icons-material';
 
+import BackgroundPic from '../assets/20211107_120549.jpg'
+
 const Root = () => {
   const navigate = useNavigate();
   const aboutRef = useRef(null);
@@ -38,13 +40,17 @@ const Root = () => {
           />
         </Toolbar>
       </AppBar >
-      <Box ref={aboutRef} id="about" sx={{ p: 3 }}>
+      <Box ref={aboutRef} id="about" sx={{
+        p: 3, background: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${BackgroundPic})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}>
         <About />
       </Box>
-      <Box ref={projectsRef} id="projects" sx={{ p: 3 }}>
+      <Box ref={projectsRef} id="projects" sx={{ p: 3, bgcolor: "white" }}>
         <Projects />
       </Box>
-      <Box ref={contactRef} id="contact" sx={{ p: 3 }}>
+      <Box ref={contactRef} id="contact" sx={{ p: 3, }}>
         <Contact />
       </Box>
     </>
