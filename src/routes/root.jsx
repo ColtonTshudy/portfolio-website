@@ -40,11 +40,7 @@ const Root = () => {
           />
         </Toolbar>
       </AppBar >
-      <Box ref={aboutRef} id="about" sx={{
-        p: 3, background: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${BackgroundPic})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}>
+      <Box ref={aboutRef} id="about" sx={{}}>
         <About />
       </Box>
       <Box ref={projectsRef} id="projects" sx={{ p: 3, bgcolor: "white" }}>
