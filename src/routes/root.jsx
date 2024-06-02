@@ -40,13 +40,13 @@ const Root = () => {
           />
         </Toolbar>
       </AppBar >
-      <Box ref={aboutRef} id="about" sx={{}}>
+      <Box ref={aboutRef} id="about" sx={{ }}>
         <About />
       </Box>
       <Box ref={projectsRef} id="projects" sx={{ p: 3, bgcolor: "white" }}>
         <Projects />
       </Box>
-      <Box ref={contactRef} id="contact" sx={{ p: 3, }}>
+      <Box ref={contactRef} id="contact" sx={{ p: 3, bgcolor: 'grey' }}>
         <Contact />
       </Box>
     </>
