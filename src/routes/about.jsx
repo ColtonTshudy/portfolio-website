@@ -2,18 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Box, Paper, Typography, styled, Divider } from '@mui/material';
 import { RotatingText } from 'react-simple-rotating-text'
 import SimpleImageSlider from "react-simple-image-slider";
+const images = import.meta.glob("../assets/slide/*")
 
-import ProfilePic from '../assets/20210925_150602.jpg'
-
-import pic1 from '../assets/slide/20190106_211408.jpg'
-import pic2 from '../assets/slide/20211107_120549.jpg'
-import pic3 from '../assets/slide/20230529_161115.jpg'
-import pic4 from '../assets/slide/20230617_155141.jpg'
-import pic5 from '../assets/slide/20240401_050513.jpg'
-import pic6 from '../assets/slide/altium pdu rev1.png'
-import pic7 from '../assets/slide/Capture.jpg'
-import pic8 from '../assets/slide/Incandescent Watch.jpg'
-import pic9 from '../assets/slide/Screenshot 2024-05-29 142515.png'
+import ProfilePic from '../assets/portraits/20210925_150602.jpg'
 
 const titles = [
     'Electrical Engineer',
@@ -22,18 +13,6 @@ const titles = [
     'EV Enthusiast',
     // 'E-Moped Connoisseur',
 ]
-
-const slideImages = [
-    { url: pic1 },
-    { url: pic2 },
-    { url: pic3 },
-    { url: pic4 },
-    { url: pic5 },
-    { url: pic6 },
-    { url: pic7 },
-    { url: pic8 },
-    { url: pic9 },
-];
 
 const CircleImage = styled('div')({
     width: 400,
@@ -53,11 +32,15 @@ const Image = styled('img')({
 });
 
 function AboutPage() {
-    const elementRef = useRef(null);
-    const [height, setHeight] = useState(0);
-
+    const elementRef = useRef(null)
+    const [height, setHeight] = useState(0)
+    const [slideImages, setSlideImages] = useState({})
 
     useEffect(() => {
+        loadImages().then((imageUrls) => {
+            setSlideImages(imageUrls);
+        });
+
         // Reset the height of slideshow on resize based on height of relevent content
         const handleResize = () => {
             if (elementRef.current) {
@@ -94,6 +77,7 @@ function AboutPage() {
                 style={{
                     position: 'absolute',
                     zIndex: '-10',
+                    backgroundColor: 'white'
                 }}
             />
             <Box
@@ -109,7 +93,7 @@ function AboutPage() {
                     <Typography variant="h2" component="h1" gutterBottom>
                         Colton Tshudy
                     </Typography>
-                    <Box sx={{ color: 'white', fontSize: '1.5em', px: 1.5, py: 0.5, bgcolor: 'primary.main', borderRadius: 2, boxShadow: 'inset 2px 2px 15px black' }}>
+                    <Box sx={{ color: 'white', fontSize: '1.5em', px: 1.5, py: 0.5, bgcolor: 'primary.light', borderRadius: 2, boxShadow: 'inset 2px 2px 15px black' }}>
                         <RotatingText className="rotating-text" texts={titles} />
                     </Box>
                     <Typography variant="body1" sx={{ marginTop: 3 }}>
@@ -123,3 +107,18 @@ function AboutPage() {
 }
 
 export default AboutPage;
+
+async function loadImages() {
+    // Create an array to hold the imported images
+    const importedImages = [];
+
+    // Loop through each entry in the images object
+    for (const path in images) {
+        // Dynamically import the image
+        const image = await images[path]();
+        // Push the imported image's default export (the URL) into the array
+        importedImages.push(image.default);
+    }
+
+    return importedImages;
+}

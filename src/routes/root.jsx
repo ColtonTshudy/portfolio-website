@@ -6,8 +6,6 @@ import Projects from './projects.jsx';
 import Contact from './contact.jsx';
 import { Widgets } from '@mui/icons-material';
 
-import BackgroundPic from '../assets/20211107_120549.jpg'
-
 const Root = () => {
   const navigate = useNavigate();
   const aboutRef = useRef(null);
@@ -46,7 +44,7 @@ const Root = () => {
       <Box ref={projectsRef} id="projects" sx={{ p: 3, bgcolor: "white" }}>
         <Projects />
       </Box>
-      <Box ref={contactRef} id="contact" sx={{ p: 3, bgcolor: 'grey' }}>
+      <Box ref={contactRef} id="contact" sx={{ p: 3, bgcolor: 'grey.200' }}>
         <Contact />
       </Box>
     </>
