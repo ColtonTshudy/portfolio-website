@@ -9,7 +9,7 @@ const Contact = () => {
       </Typography>
       <Divider/>
       <Typography variant="h5" sx={{fontStyle:'italic', my:2}}>
-        coltont@vt.edu
+        coltondtshudy@gmail.com
       </Typography>
       <Typography variant="h5" sx={{fontStyle:'italic', my:2}}>
         (804)-405-9861

@@ -15,7 +15,7 @@ const titles = [
 ]
 
 const CircleImage = styled('div')({
-    width: 400,
+    width: '300px',
     aspectRatio: 1,
     borderRadius: '50%',
     overflow: 'hidden',
@@ -37,7 +37,7 @@ function AboutPage() {
     const [slideImages, setSlideImages] = useState({})
 
     useEffect(() => {
-        loadImages().then((imageUrls) => {
+        loadImages(images).then((imageUrls) => {
             setSlideImages(imageUrls);
         });
 
@@ -89,11 +89,23 @@ function AboutPage() {
                 <CircleImage>
                     <Image src={ProfilePic} alt="Profile picture" />
                 </CircleImage>
-                <Paper elevation={5} sx={{ zIndex: 0, p: 3, textAlign: 'left', m: 5, maxWidth: { xs: '90vw', md: '50vw' } }}>
+                <Paper
+                    elevation={5}
+                    sx={{
+                        bgcolor: 'rgba(255,255,255,0.4)',
+                        color: 'white',
+                        backdropFilter: 'blur(25px)',
+                        zIndex: 0,
+                        p: 3,
+                        textAlign: 'left',
+                        m: 5,
+                        maxWidth: { xs: '90vw', md: '50vw' }
+                    }}
+                >
                     <Typography variant="h2" component="h1" gutterBottom>
                         Colton Tshudy
                     </Typography>
-                    <Box sx={{ color: 'white', fontSize: '1.5em', px: 1.5, py: 0.5, bgcolor: 'primary.light', borderRadius: 2, boxShadow: 'inset 2px 2px 15px black' }}>
+                    <Box sx={{ overflow: 'hidden', color: 'white', fontSize: '1.5em', px: 1.5, py: 0.5, bgcolor: 'primary.light', borderRadius: 2, boxShadow: 'inset 2px 2px 15px black' }}>
                         <RotatingText className="rotating-text" texts={titles} />
                     </Box>
                     <Typography variant="body1" sx={{ marginTop: 3 }}>
@@ -108,7 +120,7 @@ function AboutPage() {
 
 export default AboutPage;
 
-async function loadImages() {
+async function loadImages(images) {
     // Create an array to hold the imported images
     const importedImages = [];
 

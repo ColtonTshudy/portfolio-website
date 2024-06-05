@@ -23,13 +23,13 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
   },
   {
     /* Catch all */
     path: '*',
     element: <NotFound />,
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
   },
 ]);
 
