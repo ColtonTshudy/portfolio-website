@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Link, Typography, styled } from '@mui/material';
-const projectThumbs = import.meta.glob(['../assets/projects/*/*.png', '../assets/projects/*/*.jpg'])
-console.log(projectThumbs)
+const projectThumbs = import.meta.glob(['../assets/projects/*/thumb.png', '../assets/projects/*/thumb.jpg'])
 
 const ProjectBox = styled(Box)`
   position: relative;
@@ -14,13 +13,13 @@ const ProjectBox = styled(Box)`
   img {
     width: 100%;
     border-radius: 8px;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
     margin-bottom: -6px;
   }
 
   &:hover img {
-    opacity: 0;
     transform: scale(1.1);
+    filter: blur(8px);
   }
 
   &:hover .projectDetails {
@@ -29,6 +28,7 @@ const ProjectBox = styled(Box)`
   }
 
   .projectDetails {
+    color: white;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -55,16 +55,19 @@ const Projects = () => {
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
-        loadProjectThumbs(projectThumbs).then((thumbs) => {
-
+        // Get project thumbnail data and convert it into an array of objects for rendering
+        loadProjectData(projectThumbs).then((data) => {
             const projectsTemp = []
 
-            Object.entries(thumbs).forEach(([key, value], index) => {
+            Object.entries(data).forEach((dataPoint) => {
+                const index = dataPoint[0]
+                const projectData = dataPoint[1]
+
                 projectsTemp.push({
                     id: index,
-                    title: key,
-                    imageUrl: value,
-                    detailsUrl: key,
+                    title: projectData.name,
+                    imageUrl: projectData.thumb,
+                    detailsUrl: projectData.name,
                 })
             })
 
@@ -83,7 +86,7 @@ const Projects = () => {
                         <ProjectBox>
                             <img src={project.imageUrl} alt={project.title} />
                             <div className="projectDetails">
-                                <Typography variant="h6" component="h2" gutterBottom>
+                                <Typography variant="h6" component="h2" gutterBottom sx={{ bgcolor: 'black' }}>
                                     {project.title}
                                 </Typography>
                                 <Link href={project.detailsUrl} color="primary" underline="hover">
@@ -101,15 +104,26 @@ const Projects = () => {
 export default Projects;
 
 
-async function loadProjectThumbs(images) {
+async function loadProjectData(images) {
     // Create an array to hold the imported images
-    let importedThumbs = {};
+    let projects = [];
 
-    for (const path in images) {
-        const thumb = await images[path]();
-        const name = path.match(/\/([^/.]+)\.[^.]+$/)[1];
-        importedThumbs[name] = thumb.default;
+    for (const imagePath in images) {
+
+        const thumb = await images[imagePath]();
+        const path = imagePath.match(/(.*)\/([^\/]+)$/)[1];
+        const infoPath = path + "/info.json"
+        const info = await import(/* @vite-ignore */infoPath)
+
+        console.log(info)
+
+        projects.push({
+            name: info.title,
+            thumb: thumb.default,
+            priority: info.priority
+        })
     }
 
-    return importedThumbs;
+    projects.sort((a, b) => a.priority - b.priority)
+    return projects;
 }

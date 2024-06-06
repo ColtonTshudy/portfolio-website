@@ -40,10 +40,10 @@ const theme = createTheme({
       default: "lightgrey"
     },
     primary: {
-      main: '#a83232', // maroon
+      main: '#000000', // maroon
     },
     secondary: {
-      main: '#800f0f', // maroon
+      main: '#FFFFFF', // maroon
     },
   },
 });

@@ -26,15 +26,15 @@ const Root = () => {
         <Toolbar variant='dense' >
           <Tab
             label="About" onClick={() => { handleScroll(aboutRef); navigate('/#about'); }}
-            sx={{ ':hover': { bgcolor: 'secondary.main' } }}
+            sx={{ opacity:1, ':hover': { bgcolor: 'secondary.main', color: 'primary.main'} }}
           />
           <Tab
             label="Projects" onClick={() => { handleScroll(projectsRef); navigate('/#projects'); }}
-            sx={{ ':hover': { bgcolor: 'secondary.main' } }}
+            sx={{ opacity:1, ':hover': { bgcolor: 'secondary.main', color: 'primary.main'} }}
           />
           <Tab
             label="Contact" onClick={() => { handleScroll(contactRef); navigate('/#contact'); }}
-            sx={{ ':hover': { bgcolor: 'secondary.main' } }}
+            sx={{ opacity:1, ':hover': { bgcolor: 'secondary.main', color: 'primary.main'} }}
           />
         </Toolbar>
       </AppBar >
@@ -44,7 +44,7 @@ const Root = () => {
       <Box ref={projectsRef} id="projects" sx={{ p: 3, bgcolor: "white" }}>
         <Projects />
       </Box>
-      <Box ref={contactRef} id="contact" sx={{ p: 3, bgcolor: 'grey.200' }}>
+      <Box ref={contactRef} id="contact" sx={{ p: 3, bgcolor: 'grey.900' }}>
         <Contact />
       </Box>
     </>
