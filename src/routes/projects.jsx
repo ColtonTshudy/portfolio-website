@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Link, Typography, styled } from '@mui/material';
+import LoadingOverlay from '../components/loading-overlay.jsx'
 const projectThumbs = import.meta.glob(['../assets/projects/*/thumb.png', '../assets/projects/*/thumb.jpg'])
+const projectInfo = import.meta.glob('../assets/projects/*/info.json')
 
 const ProjectBox = styled(Box)`
   position: relative;
@@ -47,36 +49,23 @@ const ProjectBox = styled(Box)`
     opacity: 0;
     width: 100%;
     height: 100%;
-    
   }
 `;
 
 const Projects = () => {
     const [projects, setProjects] = useState([])
+    const [isLoading, setisLoading] = useState(true)
 
     useEffect(() => {
-        // Get project thumbnail data and convert it into an array of objects for rendering
-        loadProjectData(projectThumbs).then((data) => {
-            const projectsTemp = []
-
-            Object.entries(data).forEach((dataPoint) => {
-                const index = dataPoint[0]
-                const projectData = dataPoint[1]
-
-                projectsTemp.push({
-                    id: index,
-                    title: projectData.name,
-                    imageUrl: projectData.thumb,
-                    detailsUrl: projectData.name,
-                })
-            })
-
-            setProjects(projectsTemp)
+        loadProjectThumbs(projectThumbs, projectInfo).then((projects) => {
+            setProjects(projects)
+            setisLoading(false)
         })
     }, [])
 
     return (
-        <>
+        <div>
+            <LoadingOverlay isLoading={isLoading} />
             <Typography variant="h3" sx={{ marginBottom: 2 }}>
                 Projects
             </Typography>
@@ -84,7 +73,7 @@ const Projects = () => {
                 {projects.map((project) => (
                     <Grid item key={project.id} xs={12} sm={6} md={4} xl={3}>
                         <ProjectBox>
-                            <img src={project.imageUrl} alt={project.title} />
+                            <img src={project.thumb} alt={project.title} />
                             <div className="projectDetails">
                                 <Typography variant="h6" component="h2" gutterBottom sx={{ bgcolor: 'black' }}>
                                     {project.title}
@@ -97,33 +86,37 @@ const Projects = () => {
                     </Grid>
                 ))}
             </Grid>
-        </>
+        </div>
     );
 };
 
 export default Projects;
 
-
-async function loadProjectData(images) {
+async function loadProjectThumbs(thumbs, infos) {
     // Create an array to hold the imported images
-    let projects = [];
+    let projects = []
 
-    for (const imagePath in images) {
+    for (const thumbPath in thumbs) {
+        const thumb = await thumbs[thumbPath]()
+        let title = ''
+        let id = ''
 
-        const thumb = await images[imagePath]();
-        const path = imagePath.match(/(.*)\/([^\/]+)$/)[1];
-        const infoPath = path + "/info.json"
-        const info = await import(/* @vite-ignore */infoPath)
-
-        console.log(info)
+        //tries to find an associated info.json in the same folder
+        const folder = thumbPath.match(/\/([^\/]+)\/[^\/]+$/)[1]
+        for (const infoPath in infos) {
+            if (infoPath.includes(folder)) {
+                const info = await infos[infoPath]()
+                title = info.title
+                id = info.priority
+            }
+        }
 
         projects.push({
-            name: info.title,
+            title: title,
             thumb: thumb.default,
-            priority: info.priority
+            id: id,
         })
     }
 
-    projects.sort((a, b) => a.priority - b.priority)
     return projects;
 }

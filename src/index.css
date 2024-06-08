@@ -7,27 +7,3 @@
     background-size: 100% 5px, 20px 100%;
     pointer-events: none;
 }
-
-/* width */
-::-webkit-scrollbar {
-    background: transparent;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: black;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: white;
-    box-shadow: 1px 1px 10px 0.1px black inset;
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: white;
-    box-shadow: -1px -1px 5px 0.1px black inset;
-    opacity: 1;
-}
