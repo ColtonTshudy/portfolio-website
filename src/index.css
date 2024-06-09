@@ -1,3 +1,12 @@
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: white;
+}
+
 #about-container {
     overflow: hidden;
     position: relative;
@@ -10,9 +19,17 @@
     height: 100%;
     z-index: 0;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .hover-highlight:hover {
-    filter: brightness(2); /* Adjust the brightness factor as needed */
+    filter: brightness(2);
+    /* Adjust the brightness factor as needed */
+}
+
+.slideshow {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
 }

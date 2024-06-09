@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Box, Paper, Typography, styled, Divider } from '@mui/material';
 import { RotatingText } from 'react-simple-rotating-text'
 import SimpleImageSlider from "react-simple-image-slider";
-const images = import.meta.glob("../assets/slide/*")
+import ImageFader from '../components/image-fader';
+const ImageImports = import.meta.glob("../assets/slide/*")
 
 import ProfilePic from '../assets/portraits/20210925_150602.jpg'
 
@@ -16,27 +17,12 @@ const titles = [
 
 function AboutPage() {
     const elementRef = useRef(null)
-    const [height, setHeight] = useState(0)
     const [slideImages, setSlideImages] = useState({})
 
     useEffect(() => {
-        loadImages(images).then((imageUrls) => {
-            setSlideImages(imageUrls);
+        loadImages(ImageImports).then((images) => {
+            setSlideImages(images);
         });
-
-        // Reset the height of slideshow on resize based on height of relevent content
-        const handleResize = () => {
-            if (elementRef.current) {
-                setHeight(elementRef.current.clientHeight)
-            }
-        }
-        window.addEventListener('resize', handleResize);
-        handleResize()
-
-        // Destroy listener on unmount
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
     }, [])
 
     return (
@@ -53,7 +39,7 @@ function AboutPage() {
                 }}
                 ref={elementRef}
             >
-                <SimpleImageSlider
+                {/* <SimpleImageSlider
                     width='100%'
                     height='100%'
                     images={slideImages}
@@ -70,6 +56,11 @@ function AboutPage() {
                         webkitTransform: 'translate(-50%, -50%)',
                         transform: 'translate(-50%, -50%)',
                     }}
+                /> */}
+                <ImageFader
+                    className='slideshow'
+                    images={slideImages}
+                    duration={5000}
                 />
                 <Box
                     component="img"
@@ -98,10 +89,16 @@ function AboutPage() {
                         Colton Tshudy
                     </Typography>
                     <Box sx={{ overflow: 'hidden', color: 'white', fontSize: '1.5em', px: 1.5, py: 0.5, bgcolor: 'primary.light', borderRadius: 2, boxShadow: 'inset 2px 2px 15px black' }}>
-                        <RotatingText className="rotating-text" texts={titles} />
+                        <RotatingText className="rotating-text" texts={titles} duration={4} />
                     </Box>
                     <Typography variant="body1" sx={{ marginTop: 3 }}>
-                        <span style={{fontSize:"2em"}}>Hello!</span> I'm a 22 year-old recent graduate from Virignia Tech with a BSEE;  my personal interests span from PCB design and layout to machining and welding. I have experience with all parts of the development process, including high level system architecture, embedded system hardware and firmware, front and backend web development, and sizing motors and batteries for electric powertrains.
+                        <span style={{ fontSize: "2em" }}>Hello!</span> I'm a 22 year-old recent graduate from Virignia Tech with a BS in Electrical Engineering and a minor in Computer Science.
+                    </Typography>
+                    <Typography sx={{ my: 2 }}>
+                        Though my personal interests span from PCB design and layout to machining and welding; I have experience with all parts of the development process, including high level system architecture, embedded system hardware and firmware, front and backend web development, and designing and implementing electric powertrains.
+                    </Typography>
+                    <Typography sx={{ textAlign: 'center' }}>
+                        Check out my projects below!
                     </Typography>
                 </Paper>
                 <Divider />

@@ -27,7 +27,7 @@ const Root = () => {
     <Box>
       <CssBaseline />
       <AppBar position="sticky">
-        <Toolbar variant='dense' sx={{ bgcolor: 'black' }}>
+        <Toolbar variant='dense' sx={{ bgcolor: 'primary.dark' }}>
           <Tab
             label="About" onClick={() => { handleScroll(aboutRef); navigate('/#about'); }}
             sx={{ opacity: 1, ':hover': { bgcolor: 'secondary.main', color: 'primary.dark' } }}
@@ -49,7 +49,7 @@ const Root = () => {
         <Box ref={projectsRef} id="projects" sx={{ p: 3, bgcolor: "primary.main" }}>
           <Projects />
         </Box>
-        <Box ref={contactRef} id="contact" sx={{ py: 3, bgcolor: 'black' }}>
+        <Box ref={contactRef} id="contact" sx={{ py: 3, bgcolor: 'primary.dark' }}>
           <Contact />
         </Box>
       </Box>

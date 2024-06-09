@@ -38,10 +38,10 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#1B1B1B', // dark grey
+      default: 'black', // black
     },
     primary: {
-      main: '#272727', // dark grey
+      main: '#272727', // dark grey #272727
     },
     secondary: {
       main: '#FFFFFF', // white

@@ -51,8 +51,8 @@ const ProjectBox = styled(Box)({
     },
 });
 
-const ProjectGrid = styled(Grid)(({ hoverEffect }) => ({
-    ...(hoverEffect && {
+const ProjectGrid = styled(Grid)(({ hovereffect }) => ({
+    ...(hovereffect && {
         '&:hover .MuiGrid-item:not(:hover) img': {
             filter:
                 'grayscale(100%)',
@@ -78,12 +78,12 @@ const Projects = () => {
             <Typography variant="h3" sx={{ marginBottom: 2 }}>
                 Projects
             </Typography>
-            <ProjectGrid container spacing={3} hoverEffect={hoverEffect}>
+            <ProjectGrid container spacing={3} hovereffect={hoverEffect ? 1 : 0}>
                 {projects.map((project, index) => (
                     <Grid
                         item
                         key={project.id}
-                        xs={6} sm={6} md={4} lg={4} xl={3}
+                        xs={6} sm={6} md={4} lg={4} xl={4}
                     >
                         <ProjectBox
                             onMouseEnter={() => setHoverEffect(true)}
