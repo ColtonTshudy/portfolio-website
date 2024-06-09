@@ -36,14 +36,15 @@ const router = createBrowserRouter([
 /* MUI Theme */
 const theme = createTheme({
   palette: {
+    mode: 'dark',
     background: {
-      default: "lightgrey"
+      default: '#1B1B1B', // dark grey
     },
     primary: {
-      main: '#000000', // maroon
+      main: '#272727', // dark grey
     },
     secondary: {
-      main: '#FFFFFF', // maroon
+      main: '#FFFFFF', // white
     },
   },
 });

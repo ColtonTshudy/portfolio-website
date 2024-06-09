@@ -4,57 +4,66 @@ import LoadingOverlay from '../components/loading-overlay.jsx'
 const projectThumbs = import.meta.glob(['../assets/projects/*/thumb.png', '../assets/projects/*/thumb.jpg'])
 const projectInfo = import.meta.glob('../assets/projects/*/info.json')
 
-const ProjectBox = styled(Box)`
-  position: relative;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  text-align: center;
-  overflow: hidden;
-  padding: 5px;
+const ProjectBox = styled(Box)({
+    position: 'relative',
+    border: '1px solid #ccc',
+    textAlign: 'center',
+    overflow: 'hidden',
+    padding: '5px',
+    margin: '10px',
 
-  img {
-    width: 100%;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-    margin-bottom: -6px;
-  }
+    '& img': {
+        width: '100%',
+        transition: 'transform 0.3s ease-in-out, filter 0.3s ease-in-out',
+        marginBottom: '-6px',
+    },
 
-  &:hover img {
-    transform: scale(1.1);
-    filter: blur(8px);
-  }
+    '&:hover img': {
+        transform: 'scale(1.1)',
+        filter: 'blur(8px)',
+    },
 
-  &:hover .projectDetails {
-    opacity: 1;
-    transform: translateX(-50%);
-  }
+    '&:hover .projectDetails': {
+        opacity: 1,
+        transform: 'translateX(-50%)',
+    },
 
-  .projectDetails {
-    color: white;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0; /* Set top to 50% */
-    left: 50%; /* Align to the left */
-    transform: translate(-50%, -50%); /* Center vertically and horizontally */
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+    '.projectDetails': {
+        color: 'white',
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        transition: 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
+        opacity: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
 
-  .projectDetails > a {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-  }
-`;
+    '.projectDetails > a': {
+        position: 'absolute',
+        opacity: 0,
+        width: '100%',
+        height: '100%',
+    },
+});
+
+const ProjectGrid = styled(Grid)(({ hoverEffect }) => ({
+    ...(hoverEffect && {
+        '&:hover .MuiGrid-item:not(:hover) img': {
+            filter:
+                'grayscale(100%)',
+        }
+    })
+}));
 
 const Projects = () => {
     const [projects, setProjects] = useState([])
     const [isLoading, setisLoading] = useState(true)
+    const [hoverEffect, setHoverEffect] = useState(false);
 
     useEffect(() => {
         loadProjectThumbs(projectThumbs, projectInfo).then((projects) => {
@@ -69,23 +78,28 @@ const Projects = () => {
             <Typography variant="h3" sx={{ marginBottom: 2 }}>
                 Projects
             </Typography>
-            <Grid container spacing={3}>
-                {projects.map((project) => (
-                    <Grid item key={project.id} xs={12} sm={6} md={4} xl={3}>
-                        <ProjectBox>
+            <ProjectGrid container spacing={3} hoverEffect={hoverEffect}>
+                {projects.map((project, index) => (
+                    <Grid
+                        item
+                        key={project.id}
+                        xs={6} sm={6} md={4} lg={4} xl={3}
+                    >
+                        <ProjectBox
+                            onMouseEnter={() => setHoverEffect(true)}
+                            onMouseLeave={() => setHoverEffect(false)}
+                        >
                             <img src={project.thumb} alt={project.title} />
                             <div className="projectDetails">
-                                <Typography variant="h6" component="h2" gutterBottom sx={{ bgcolor: 'black' }}>
+                                <Typography variant="h6" component="h2" gutterBottom sx={{ px: 1, bgcolor: 'black' }}>
                                     {project.title}
                                 </Typography>
-                                <Link href={project.detailsUrl} color="primary" underline="hover">
-                                    View Details
-                                </Link>
+                                <Link href={project.detailsUrl} />
                             </div>
                         </ProjectBox>
                     </Grid>
                 ))}
-            </Grid>
+            </ProjectGrid>
         </div>
     );
 };
@@ -115,8 +129,9 @@ async function loadProjectThumbs(thumbs, infos) {
             title: title,
             thumb: thumb.default,
             id: id,
+            detailsUrl: `/${title}`
         })
     }
-
+    projects.sort((a, b) => a.id - b.id);
     return projects;
 }
