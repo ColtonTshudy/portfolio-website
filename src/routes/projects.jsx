@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Grid, Link, Typography, styled } from '@mui/material';
 import LoadingOverlay from '../components/loading-overlay.jsx'
 const projectThumbs = import.meta.glob(['../assets/projects/*/thumb.png', '../assets/projects/*/thumb.jpg'])
@@ -94,7 +94,6 @@ const Projects = () => {
                                 <Typography variant="h6" component="h2" gutterBottom sx={{ px: 1, bgcolor: 'black' }}>
                                     {project.title}
                                 </Typography>
-                                <Link href={project.detailsUrl} />
                             </div>
                         </ProjectBox>
                     </Grid>
