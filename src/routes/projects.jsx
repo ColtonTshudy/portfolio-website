@@ -94,7 +94,6 @@ const Projects = () => {
                                 <Typography variant="h6" component="h2" gutterBottom sx={{ px: 1, bgcolor: 'black' }}>
                                     {project.title}
                                 </Typography>
-                                <Link href={project.detailsUrl} />
                             </div>
                         </ProjectBox>
                     </Grid>
