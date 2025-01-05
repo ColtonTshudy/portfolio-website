@@ -75,9 +75,9 @@ function AboutPage() {
                 <Paper
                     elevation={5}
                     sx={{
-                        bgcolor: 'rgba(255,255,255,0.4)',
+                        bgcolor: 'rgba(255,255,255,0.2)',
                         color: 'white',
-                        backdropFilter: 'blur(25px)',
+                        backdropFilter: 'blur(10px)',
                         zIndex: 0,
                         p: 2,
                         textAlign: 'left',
