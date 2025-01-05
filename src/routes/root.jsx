@@ -1,14 +1,10 @@
-import React, { useRef } from 'react';
-import { AppBar, Tabs, Tab, Box, Toolbar, CssBaseline, styled } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
+import { AppBar, Tab, Box, Toolbar, CssBaseline } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import About from './about.jsx';
 import Projects from './projects.jsx';
 import Contact from './contact.jsx';
-import { Widgets } from '@mui/icons-material';
-
-const Margins = styled(Box)({
-
-});
+// import { Widgets } from '@mui/icons-material';
 
 const Root = () => {
   const navigate = useNavigate();

@@ -1,5 +1,4 @@
-import { Box, Divider, Paper, Typography, styled } from '@mui/material';
-import React from 'react';
+import { Box, Typography } from '@mui/material';
 import LinkedInIcon from '../assets/linkedin-svgrepo-com.svg'
 
 const Contact = () => {

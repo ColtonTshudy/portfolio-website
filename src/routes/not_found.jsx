@@ -1,6 +1,5 @@
 // NotFound.js
-import React from 'react';
-import { Paper, Typography, Container, Box } from '@mui/material';
+import { Paper, Typography, Container } from '@mui/material';
 
 const NotFound = () => {
   return (

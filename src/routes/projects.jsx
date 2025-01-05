@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Grid, Link, Typography, styled } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Box, Grid, Typography, styled } from '@mui/material';
 import LoadingOverlay from '../components/loading-overlay.jsx'
 const projectThumbs = import.meta.glob(['../assets/projects/*/thumb.png', '../assets/projects/*/thumb.jpg'])
 const projectInfo = import.meta.glob('../assets/projects/*/info.json')
@@ -79,7 +79,7 @@ const Projects = () => {
                 Projects
             </Typography>
             <ProjectGrid container spacing={3} hovereffect={hoverEffect ? 1 : 0}>
-                {projects.map((project, index) => (
+                {projects.map((project) => (
                     <Grid
                         item
                         key={project.id}
@@ -115,7 +115,7 @@ async function loadProjectThumbs(thumbs, infos) {
         let id = ''
 
         //tries to find an associated info.json in the same folder
-        const folder = thumbPath.match(/\/([^\/]+)\/[^\/]+$/)[1]
+        const folder = thumbPath.match(/\/([^/]+)\/[^/]+$/)[1]
         for (const infoPath in infos) {
             if (infoPath.includes(folder)) {
                 const info = await infos[infoPath]()
