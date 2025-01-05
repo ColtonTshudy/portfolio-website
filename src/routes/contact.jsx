@@ -1,6 +1,6 @@
-import { Box, Divider, Paper, Typography, styled } from '@mui/material';
-import React from 'react';
+import { Box, Typography } from '@mui/material';
 import LinkedInIcon from '../assets/linkedin-svgrepo-com.svg'
+import GitHubIcon from '../assets/github-mark.svg'
 
 const Contact = () => {
     return (
@@ -15,10 +15,17 @@ const Contact = () => {
                 </Typography>
                 <Box sx={{ m: 1, height: { xs: 2, md: 20 }, width: { xs: '30%', md: 2 }, bgcolor: 'grey.500' }} />
                 <Box style={{ height: '50px', width: '50px' }}>
-                    <a style={{ height: '100%', width: "100%" }} href="https://www.linkedin.com/in/colton-tshudy-2570421b7/">
+                    <a style={{ height: '100%', width: "100%" }} href="https://www.linkedin.com/in/colton-tshudy-2570421b7">
                         <img className="hover-highlight" style={{ height: '100%' }} src={LinkedInIcon} alt="LinkedIn" />
                     </a>
                 </Box>
+                <Box sx={{ m: 1, height: { xs: 2, md: 20 }, width: { xs: '30%', md: 2 }, bgcolor: 'grey.500' }} />
+                <Box style={{ height: '50px', width: '50px' }}>
+                    <a style={{ height: '100%', width: "100%" }} href="https://github.com/ColtonTshudy">
+                        <img className="hover-highlight" style={{ height: '100%' }} src={GitHubIcon} alt="GitHub" />
+                    </a>
+                </Box>
+
 
             </Box>
         </>

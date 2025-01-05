@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Box, Paper, Typography, styled, Divider } from '@mui/material';
+import { useRef, useEffect, useState } from 'react';
+import { Box, Paper, Typography, Divider } from '@mui/material';
 import { RotatingText } from 'react-simple-rotating-text'
-import SimpleImageSlider from "react-simple-image-slider";
+// import SimpleImageSlider from "react-simple-image-slider";
 import ImageFader from '../components/image-fader';
 const ImageImports = import.meta.glob("../assets/slide/*")
 
@@ -75,9 +75,9 @@ function AboutPage() {
                 <Paper
                     elevation={5}
                     sx={{
-                        bgcolor: 'rgba(255,255,255,0.4)',
+                        bgcolor: 'rgba(255,255,255,0.2)',
                         color: 'white',
-                        backdropFilter: 'blur(25px)',
+                        backdropFilter: 'blur(10px)',
                         zIndex: 0,
                         p: 2,
                         textAlign: 'left',
@@ -92,7 +92,7 @@ function AboutPage() {
                         <RotatingText className="rotating-text" texts={titles} duration={4} />
                     </Box>
                     <Typography variant="body1" sx={{ marginTop: 3 }}>
-                        <span style={{ fontSize: "2em" }}>Hello!</span> I'm a 22 year-old recent graduate from Virignia Tech with a BS in Electrical Engineering and a minor in Computer Science.
+                        <span style={{ fontSize: "2em" }}>Hello!</span> I&rsquo;m a 22 year-old recent graduate from Virignia Tech with a BS in Electrical Engineering and a minor in Computer Science.
                     </Typography>
                     <Typography sx={{ my: 2 }}>
                         Though my personal interests span from PCB design and layout to machining and welding; I have experience with all parts of the development process, including high level system architecture, embedded system hardware and firmware, front and backend web development, and designing and implementing electric powertrains.
