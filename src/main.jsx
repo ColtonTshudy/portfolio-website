@@ -12,6 +12,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root.jsx'
 import NotFound from './routes/not_found.jsx'
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 /* Fonts */
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -54,6 +56,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
+      <SpeedInsights />
     </ThemeProvider>
   </React.StrictMode>,
 )
