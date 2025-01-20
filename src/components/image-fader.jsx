@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './image-fader.css';
 
 const ImageFader = ({ images = [], duration = 3000, className = '', style = {} }) => {
@@ -13,7 +13,7 @@ const ImageFader = ({ images = [], duration = 3000, className = '', style = {} }
             setTimeout(() => {
                 setIndex((prevIndex) => (prevIndex + 1) % images.length);
                 setFade(true);
-                console.log(index)
+                // console.log(index)
             }, 1000); // Transition duration
         }, duration);
     

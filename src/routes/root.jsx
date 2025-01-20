@@ -5,7 +5,6 @@ import About from './about.jsx';
 import Projects from './projects.jsx';
 import Contact from './contact.jsx';
 // import { Widgets } from '@mui/icons-material';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const Root = () => {
   const navigate = useNavigate();
@@ -50,7 +49,6 @@ const Root = () => {
           <Contact />
         </Box>
       </Box>
-      <SpeedInsights />
     </Box>
   );
 };
