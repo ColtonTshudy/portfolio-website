@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { styled, keyframes } from '@mui/material';
 
 const spin = keyframes`
@@ -13,7 +13,7 @@ const Overlay = styled('div')(({ isLoading }) => ({
   left: 0,
   width: '100%',
   height: '100%',
-  background: 'white',
+  background: 'black',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -38,6 +38,10 @@ const LoadingOverlay = ({ isLoading }) => {
       <Spinner />
     </Overlay>
   );
+};
+
+LoadingOverlay.propTypes = {
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default LoadingOverlay;
