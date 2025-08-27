@@ -92,7 +92,7 @@ function AboutPage() {
                         <RotatingText className="rotating-text" texts={titles} duration={4} />
                     </Box>
                     <Typography variant="body1" sx={{ marginTop: 3 }}>
-                        <span style={{ fontSize: "2em" }}>Hello!</span> I&rsquo;m a 22 year-old recent graduate from Virignia Tech with a BS in Electrical Engineering and a minor in Computer Science.
+                        <span style={{ fontSize: "2em" }}>Hello!</span> I'm an electrical engineer based out of Richmond, VA; working on all types of systems ranging from batteries, automated testing, and cross-disciplinary integration both professionally and as a hobby.
                     </Typography>
                     <Typography sx={{ my: 2 }}>
                         Though my personal interests span from PCB design and layout to machining and welding; I have experience with all parts of the development process, including high level system architecture, embedded system hardware and firmware, front and backend web development, and designing and implementing electric powertrains.
